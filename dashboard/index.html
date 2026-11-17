@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Launch Radar — pre-token protocols ranked by implied value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="top">
+  <div>
+    <h1>Token Launch Radar</h1>
+    <p id="sub" class="sub">Loading the board…</p>
+  </div>
+  <div class="badge">Model <span id="modelver">radar-2</span><br>peer multiples from the snapshot itself</div>
+</header>
+
+<section class="panel modelbox">
+  <h2>How an implied value is made</h2>
+  <p>Every live peer in a category reveals a market-cap / TVL multiple. A pre-token protocol is valued at
+  <strong>TVL × its category's median peer multiple</strong>, adjusted for its 7-day TVL growth, for how long it has
+  operated with no token recorded, and for how many chains it runs on. Nothing is hardcoded by name: change a
+  figure in the snapshot and the board moves. Values are this radar's own claim about what a launch
+  <em>would</em> be worth if the record stayed as it is — not a prediction that a token will come.</p>
+</section>
+
+<section class="panel controls">
+  <label>Search <input id="q" type="search" placeholder="name or slug"></label>
+  <label>Category <select id="fcat"><option value="">All categories</option></select></label>
+  <label>Chain <select id="fchain"><option value="">All chains</option></select></label>
+  <label>Sort <select id="fsort">
+    <option value="rank">Implied value (rank)</option>
+    <option value="tvl">TVL</option>
+    <option value="growth">7-day growth</option>
+    <option value="age">Age (oldest first)</option>
+  </select></label>
+  <label class="check"><input id="fwatch" type="checkbox"> Watchlist only</label>
+  <label class="check"><input id="flive" type="checkbox"> Show live-token peers instead</label>
+  <span id="count" class="count"></span>
+</section>
+
+<main class="layout">
+  <section class="panel boardwrap">
+    <table id="board">
+      <thead><tr>
+        <th>#</th><th>Protocol</th><th>Category</th><th>Chains</th>
+        <th class="num">TVL</th><th class="num">7d %</th><th class="num">Peer ×</th>
+        <th class="num">Implied value</th><th></th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <p id="empty" class="empty" hidden>No protocol matches those filters. Loosen one and the board returns.</p>
+  </section>
+  <aside class="panel detail" id="detail">
+    <h2>Protocol detail</h2>
+    <p class="hint">Pick any row. You will get the full arithmetic behind its implied value, the live peers its
+    multiple came from, and the farm plan with costs and times.</p>
+  </aside>
+</main>
+
+<footer class="foot"><p id="foot"></p></footer>
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
